@@ -21,9 +21,9 @@ const Teams = () => {
                         <div
                             data-aos="fade-up"
                             data-aos-delay={100 + idx * 50}
-                            key={member.id} className="flex flex-col items-center text-center"
+                            key={member.id}
+                            className="flex flex-col items-center text-center"
                         >
-                            {/* Image Card with Hover Overlay */}
                             <div className="relative group w-full h-[350px] overflow-hidden rounded-xl shadow-lg">
                                 <Image
                                     src={member.image}
@@ -31,17 +31,18 @@ const Teams = () => {
                                     width={400}
                                     height={400}
                                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                                    priority={idx < 3} // prioritize first 3 images
                                 />
 
-                                {/* Crossed Gradient Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/80 via-transparent to-blue-500/80 opacity-0 group-hover:opacity-90 backdrop-blur-md scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-out"></div>
-                                <div className="absolute inset-0 bg-gradient-to-bl from-purple-600/80 via-transparent to-sky-400/80 opacity-0 group-hover:opacity-90 backdrop-blur-md scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-700 ease-out"></div>
+                                {/* Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/70 via-transparent to-blue-500/70 opacity-0 group-hover:opacity-90 backdrop-blur-md transition-all duration-700"></div>
 
                                 {/* Social Icons */}
                                 <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
                                     <div className="flex gap-4">
                                         <a
                                             href={member.socials.github}
+                                            aria-label={`${member.name} GitHub`}
                                             className="p-2 bg-gray-800/70 rounded-full hover:bg-pink-500 transition"
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -50,6 +51,7 @@ const Teams = () => {
                                         </a>
                                         <a
                                             href={member.socials.linkedin}
+                                            aria-label={`${member.name} LinkedIn`}
                                             className="p-2 bg-gray-800/70 rounded-full hover:bg-blue-500 transition"
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -58,6 +60,7 @@ const Teams = () => {
                                         </a>
                                         <a
                                             href={member.socials.twitter}
+                                            aria-label={`${member.name} Twitter`}
                                             className="p-2 bg-gray-800/70 rounded-full hover:bg-sky-400 transition"
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -68,7 +71,7 @@ const Teams = () => {
                                 </div>
                             </div>
 
-                            {/* Info outside the image */}
+                            {/* Name & Position */}
                             <div className="mt-4">
                                 <Link
                                     href={`/teams/${member.slug}`}
@@ -83,9 +86,8 @@ const Teams = () => {
                     ))}
                 </div>
             </div>
-            <div>
-                <CTA />
-            </div>
+
+            <CTA />
         </section>
     );
 };

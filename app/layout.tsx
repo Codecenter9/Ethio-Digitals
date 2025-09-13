@@ -1,13 +1,13 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import Providers from "@/components/layout/provider";
 
-
 export const metadata: Metadata = {
   title: {
-    default: "Home - EthioDigitals Software Company in Ethiopia",
+    default: "Home - EthioDigitals | Software Company in Ethiopia",
     template: "%s - EthioDigitals",
   },
   description:
@@ -16,15 +16,16 @@ export const metadata: Metadata = {
     "EthioDigitals",
     "Software Company Ethiopia",
     "Web Development",
-    "Mobile Apps",
+    "Mobile App Development",
     "AI Solutions",
     "Digital Transformation",
     "IT Services Ethiopia",
+    "Enterprise Solutions",
   ],
   authors: [{ name: "EthioDigitals Team", url: "https://ethiodigitals.com" }],
   creator: "EthioDigitals",
   publisher: "EthioDigitals",
-  metadataBase: new URL("https://ethiodigitals.com"), // replace with real domain
+  metadataBase: new URL("https://ethiodigitals.com"),
 
   openGraph: {
     type: "website",
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
       "We provide professional software services including Web Development, Mobile Applications, AI & Automation, and IT solutions tailored for businesses in Ethiopia and beyond.",
     images: [
       {
-        url: "/og-image.png", // place your logo or hero image in /public
+        url: "/og-image.png", // ensure this exists in /public
         width: 1200,
         height: 630,
         alt: "EthioDigitals Software Company",
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     description:
       "Professional software solutions in Ethiopia: Web Development, Mobile Apps, AI & Automation.",
     images: ["/og-image.png"],
-    creator: "@EthioDigitals", // replace with your twitter handle
+    creator: "@EthioDigitals",
   },
 
   icons: {
@@ -64,23 +65,20 @@ export const metadata: Metadata = {
   },
 };
 
-
-export default function RootLayout({
-  children,
-}: Readonly<{
+type RootLayoutProps = {
   children: React.ReactNode;
-}>) {
+};
 
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-gray-950 text-white">
+      <body className="bg-gray-950 text-white min-h-screen flex flex-col">
         <Navbar />
-
-        <Providers>{children}</Providers>
-
+        <Providers>
+          <main className="flex-1">{children}</main>
+        </Providers>
         <Footer />
       </body>
     </html>
-
   );
 }

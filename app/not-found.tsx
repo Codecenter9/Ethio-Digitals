@@ -108,7 +108,7 @@ export default function NotFound() {
                 <div className="w-full md:w-1/2 bg-gray-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-10 shadow-2xl flex flex-col gap-6 border border-gray-700/60">
                     <div>
                         <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">Lost in Space?</h1>
-                        <p className="text-gray-300 max-w-md">Oops! The page you're looking for seems to have drifted off into the cosmos. Don't worry, we can help you find your way back home.</p>
+                        <p className="text-gray-300 max-w-md">Oops! The page you are looking for seems to have drifted off into the cosmos. Not worry, we can help you find your way back home.</p>
                     </div>
 
                     <div className="flex flex-wrap gap-3 mt-2">

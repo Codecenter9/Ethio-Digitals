@@ -29,14 +29,14 @@ export default function TeamMemberClient({ member }: { member: TeamMember }) {
 
     return (
         <div className="min-h-screen py-12 md:py-24 bg-gray-950 text-white">
-         
+
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {/* Profile Header */}
                 <div className="flex flex-col md:flex-row gap-8 md:gap-12 mb-12">
                     {/* Profile Image */}
                     <div className="flex-shrink-0">
-                        <div className="w-48 h-48 md:w-64 md:h-64 relative rounded-2xl overflow-hidden shadow-xl border-4 border-purple-500/20">
+                        <div className="w-95 h-100 md:w-64 md:h-64 relative rounded-2xl overflow-hidden shadow-xl border-4 border-purple-500/20">
                             <Image
                                 src={member.image}
                                 alt={member.name}

@@ -15,7 +15,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Contact ",
+    title: "Contact Us | Ethio Digitals",
     description:
         "Get in touch with Ethio Digitals Software Company. Contact us for software development, web design, mobile apps, and digital solutions in Ethiopia.",
     keywords: [
@@ -30,11 +30,11 @@ export const metadata: Metadata = {
         title: "Contact Us | Ethio Digitals",
         description:
             "Reach out to Ethio Digitals for inquiries, support, and business opportunities. We provide software, web, and mobile solutions across Ethiopia.",
-        url: "https://ethiodigitals.com/contact", // replace with your real URL
+        url: "https://ethiodigitals.com/contact",
         siteName: "Ethio Digitals",
         images: [
             {
-                url: "https://ethiodigitals.com/contact-og.jpg", // replace with a contact-themed OG image
+                url: "https://ethiodigitals.com/contact-og.jpg",
                 width: 1200,
                 height: 630,
                 alt: "Contact Ethio Digitals",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
         title: "Contact Us | Ethio Digitals",
         description:
             "Get in touch with Ethio Digitals Software Company for software development and digital solutions.",
-        images: ["https://ethiodigitals.com/contact-og.jpg"], // replace with real OG image
+        images: ["https://ethiodigitals.com/contact-og.jpg"],
     },
 };
 

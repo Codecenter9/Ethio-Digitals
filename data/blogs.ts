@@ -12,6 +12,8 @@ const blogs = [
     readTime: "5 min read",
     likes: 12,
     comments: 5,
+    views: 120,
+    tags: ["React", "Next.js"],
   },
   {
     id: 2,
@@ -26,6 +28,8 @@ const blogs = [
     readTime: "7 min read",
     likes: 24,
     comments: 8,
+    views: 120,
+    tags: ["React", "Next.js"],
   },
   {
     id: 3,
@@ -40,6 +44,8 @@ const blogs = [
     readTime: "6 min read",
     likes: 18,
     comments: 7,
+    views: 120,
+    tags: ["React", "Next.js"],
   },
   {
     id: 4,
@@ -54,6 +60,8 @@ const blogs = [
     readTime: "8 min read",
     likes: 31,
     comments: 12,
+    views: 120,
+    tags: ["React", "Next.js"],
   },
   {
     id: 5,
@@ -68,6 +76,8 @@ const blogs = [
     readTime: "5 min read",
     likes: 15,
     comments: 3,
+    views: 120,
+    tags: ["React", "Next.js"],
   },
   {
     id: 6,
@@ -82,6 +92,8 @@ const blogs = [
     readTime: "9 min read",
     likes: 42,
     comments: 15,
+    views: 120,
+    tags: ["React", "Next.js"],
   },
   {
     id: 7,
@@ -96,6 +108,8 @@ const blogs = [
     readTime: "6 min read",
     likes: 27,
     comments: 9,
+    views: 120,
+    tags: ["React", "Next.js"],
   },
   {
     id: 8,
@@ -110,6 +124,8 @@ const blogs = [
     readTime: "7 min read",
     likes: 38,
     comments: 14,
+    views: 120,
+    tags: ["React", "Next.js"],
   },
   {
     id: 9,
@@ -124,6 +140,8 @@ const blogs = [
     readTime: "8 min read",
     likes: 22,
     comments: 6,
+    views: 120,
+    tags: ["React", "Next.js"],
   },
   {
     id: 10,
@@ -138,7 +156,12 @@ const blogs = [
     readTime: "10 min read",
     likes: 47,
     comments: 18,
+    views: 120,
+    tags: ["React", "Next.js"],
   },
 ];
 
 export default blogs;
+
+
+// export const tags = ["React", "NextJS", "UI/UX", "Web Development", "JavaScript", "Design", "AI", "Startup"];
