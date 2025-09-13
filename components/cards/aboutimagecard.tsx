@@ -63,7 +63,7 @@ const AboutImageCard = () => {
                 </div>
 
                 {/* Devices Container - Updated with larger sizes and overlay */}
-                <div className="relative w-full flex items-center justify-center  bg-gray-900/30 rounded-xl ">
+                <div data-aos="fade-right" className="relative w-full flex items-center justify-center  bg-gray-900/30 rounded-xl ">
 
                     <div
                         data-aos="fade-right"
@@ -114,8 +114,8 @@ const AboutImageCard = () => {
 
                     {/* Mobile - Made larger and positioned to overlay */}
                     <div
-                        data-aos="fade-up"
-                        data-aos-delay={150}
+                        data-aos="fade-left"
+                        data-aos-delay={100}
                         className="absolute z-10 transform rotate-6
                         top-60 -right-10 -translate-y-1/2 w-60 md:w-70
                         md:top-67 md:right-[-2rem] 

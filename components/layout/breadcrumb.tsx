@@ -34,18 +34,14 @@ export function SharedHero({ title, description }: SharedHeroProps) {
   const pathname = usePathname();
   const parts = pathname.split("/").filter(Boolean);
 
-  // Use provided title or fallback to URL-based title
   const displayTitle =
     title || (parts.length > 0 ? parts[parts.length - 1] : "");
 
   return (
-    <section className="relative w-full h-[70vh] md:h-[80vh] flex items-center overflow-hidden bg-gray-900">
-      {/* Background */}
+    <section className="relative w-full h-[65vh] md:h-[80vh] flex items-center overflow-hidden bg-gray-900">
       <BubbleBackground />
 
-      {/* Content container */}
       <div className="relative z-10 container mx-auto px-6 md:px-8 h-full flex flex-col justify-start pt-28">
-        {/* Breadcrumb first */}
         <div className="mb-6 flex justify-end h-full items-center">
           <Breadcrumb>
             <BreadcrumbList className="flex flex-wrap items-center space-x-2 text-white text-sm md:text-base">
@@ -89,7 +85,6 @@ export function SharedHero({ title, description }: SharedHeroProps) {
           </Breadcrumb>
         </div>
 
-        {/* Title + Description */}
         <div className="flex flex-col justify-end max-w-5xl h-full pb-12">
           <div className="relative">
             <div className="absolute -left-6 top-3 w-4 h-4 bg-indigo-500 rounded-full opacity-80 glow-effect"></div>

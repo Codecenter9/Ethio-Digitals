@@ -19,12 +19,12 @@ export function Hero() {
 
     return (
         <section
-            className="relative min-h-screen pt-36 pb-12 w-full flex flex-col items-center justify-center antialiased overflow-hidden"
+            className="relative min-h-max md:min-h-screen pt-36 py-12 w-full flex flex-col items-center justify-center antialiased"
             aria-label="Hero Section"
         >
             <Spotlight />
 
-            <div className="relative max-w-5xl z-10 px-6 mx-auto flex flex-col items-start md:items-center text-center md:text-center">
+            <div className="relative max-w-5xl z-10 px-6 mx-auto flex flex-col items-center text-center">
                 {/* Limited Offer Badge */}
                 <div
                     className="top-6 z-20 mb-6"
@@ -43,9 +43,9 @@ export function Hero() {
                 <h1
                     data-aos="fade-up"
                     data-aos-delay="100"
-                    className="text-4xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-blue-500 via-pink-500 to-neutral-400"
+                    className="text-3xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-blue-500 via-pink-500 to-neutral-400"
                 >
-                    Smart Digital Solutions for <br /> Growing Businesses
+                    Smart Digital Solutions <br /> for Growing Businesses
                 </h1>
 
                 {/* Hero Subtitle */}
@@ -59,9 +59,9 @@ export function Hero() {
                 </p>
 
                 {/* Call to Actions */}
-                <div className="mt-8 flex flex-col md:flex-row items-center gap-4">
+                <div className="mt-8 flex flex-row items-center gap-4">
                     <Link
-                        href="/get-started"
+                        href="/contact"
                         data-aos="fade-up"
                         data-aos-delay="300"
                         className="group relative px-6 py-3 flex items-center justify-center gap-3 rounded-full text-lg text-white bg-pink-500 overflow-hidden transition-all duration-500 ease-out hover:bg-pink-600"

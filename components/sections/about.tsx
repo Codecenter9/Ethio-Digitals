@@ -23,7 +23,7 @@ export const About: React.FC = () => {
                 <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-tl from-purple-500/15 to-transparent blur-3xl" />
             </div>
 
-            <div className="container mx-auto flex flex-col-reverse md:flex-row gap-10 items-center">
+            <div className="container mx-auto flex flex-col-reverse md:flex-row gap-10 items-start">
                 {/* Content */}
                 <article
                     data-aos="fade-up"
@@ -71,7 +71,7 @@ export const About: React.FC = () => {
                         className="flex flex-wrap gap-4 mt-4"
                     >
                         <Link
-                            href="/get-started"
+                            href="/about"
                             className="relative group p-3 inline-block"
                         >
                             <span className="text-pink-600 font-medium relative">
@@ -86,17 +86,20 @@ export const About: React.FC = () => {
                 <div
                     data-aos="fade-left"
                     data-aos-delay={100}
-                    className="flex-1 flex justify-center items-center"
+                    className="flex flex-1 justify-center items-stretch"
                 >
-                    <Image
-                        src="/images/team.webp"
-                        width={450}
-                        height={450}
-                        alt="EthioDigitals team working on innovative software solutions"
-                        className="rounded-xl object-cover"
-                        priority
-                    />
+                    <div className="w-full h-full max-w-md">
+                        <Image
+                            src="/images/team.webp"
+                            alt="EthioDigitals team working on innovative software solutions"
+                            width={600}
+                            height={600}
+                            className="rounded-xl object-cover w-full h-full"
+                            priority
+                        />
+                    </div>
                 </div>
+
             </div>
         </section>
     );

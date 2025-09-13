@@ -100,7 +100,7 @@ export const Blogs: React.FC = () => {
 
                             {/* Read More link */}
                             <Link
-                                href={`/blogs/${blog.slug || blog.id}`}
+                                href={`/news/${blog.slug || blog.id}`}
                                 className="mt-6 inline-block group relative"
                             >
                                 <span className="text-pink-600 font-medium relative">
