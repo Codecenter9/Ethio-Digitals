@@ -46,7 +46,7 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">Services</h3>
           <ul className="space-y-2">
-            {["Web Development", "Mobile Apps", "AI & Automation", "Careers"].map((service, idx) => (
+            {["Software Development", "Graphics Design", "Digital Marketing", "Social Media Management"].map((service, idx) => (
               <li key={idx}>
                 <Link
                   href={`/services/${service.toLowerCase().replace(/\s/g, "")}`}
@@ -64,8 +64,8 @@ const Footer = () => {
           <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
           <p className="text-sm text-gray-400 leading-relaxed">
             Addis Ababa, Ethiopia <br />
-            Phone: +251-900-000-000 <br />
-            Email: info@ethiodigitals.com
+            Phone: +251982648798 <br />
+            Email: juharendrishu@@gmail.com
           </p>
 
           {/* Social Media Icons */}

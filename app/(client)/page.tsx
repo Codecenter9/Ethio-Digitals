@@ -1,7 +1,6 @@
 
 import Counters from "@/components/cards/counters";
 import CTA from "@/components/cards/CTA";
-import Technologies from "@/components/cards/techs";
 import About from "@/components/sections/about";
 import Blogs from "@/components/sections/blogs";
 import Features from "@/components/sections/features";
@@ -17,7 +16,7 @@ export default function Home() {
       <About />
       <Features />
       <ProductTimeline />
-      <Technologies />
+      {/* <Technologies /> */}
       <Testimonials />
       <Blogs />
       <CTA />

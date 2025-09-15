@@ -13,35 +13,42 @@ type Feature = {
 const features: Feature[] = [
     {
         icon: <Users className="w-8 h-8 text-pink-500" aria-hidden="true" />,
-        title: "Expert Development Team",
+        title: "Skilled Team",
         description:
-            "Our professional software engineers deliver scalable web and mobile solutions tailored to your business needs.",
+            "We have a friendly and talented team ready to help you with websites, apps, and digital solutions.",
     },
     {
         icon: <Globe2 className="w-8 h-8 text-pink-500" aria-hidden="true" />,
-        title: "Global Digital Presence",
+        title: "Strong Online Presence",
         description:
-            "We help companies in Ethiopia and beyond build a strong digital footprint through modern web technologies.",
+            "We make it easy for businesses and people to be seen online with modern and simple platforms.",
     },
     {
         icon: <Cpu className="w-8 h-8 text-pink-500" aria-hidden="true" />,
-        title: "Cutting-Edge Technology",
+        title: "Smart Technology",
         description:
-            "EthioDigitals leverages AI, cloud computing, and emerging technologies to keep your business ahead.",
+            "We use the latest tools and technology to give you easy and effective solutions.",
     },
     {
         icon: <Award className="w-8 h-8 text-pink-500" aria-hidden="true" />,
-        title: "Proven Track Record",
+        title: "Creative Design",
         description:
-            "We have successfully completed numerous projects, empowering startups, enterprises, and NGOs with digital solutions.",
+            "From logos to visuals, we design creative content that makes your brand stand out.",
+    },
+    {
+        icon: <Award className="w-8 h-8 text-pink-500" aria-hidden="true" />,
+        title: "Proven Experience",
+        description:
+            "We have worked on many projects for startups, companies, and organizations with great results.",
     },
     {
         icon: <ShieldCheck className="w-8 h-8 text-pink-500" aria-hidden="true" />,
-        title: "Trusted & Secure Solutions",
+        title: "Safe & Reliable",
         description:
-            "Security and reliability are at the core of everything we build, ensuring your data and systems remain protected.",
+            "We care about your trust. Everything we build is secure, dependable, and built to last.",
     },
 ];
+
 
 export const Features: React.FC = () => {
     return (

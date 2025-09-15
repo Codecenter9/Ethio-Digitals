@@ -1,55 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Clock, User } from "lucide-react";
+import { ArrowRight, Calendar, Heart, MessageCircle, User } from "lucide-react";
 import Link from "next/link";
 import { SectionHeading } from "../layout/sectionheading";
+import blogs from "@/data/blogs";
 
-type Blog = {
-    id: number;
-    title: string;
-    image: string;
-    author: string;
-    date: string;
-    description: string;
-    slug?: string;
-};
-
-const blogs: Blog[] = [
-    {
-        id: 1,
-        title: "Building Scalable Web Apps with Next.js",
-        image: "/images/OIP.webp",
-        author: "Juhar Endris",
-        date: "Sep 5, 2025",
-        description:
-            "Discover how to leverage Next.js for performance and scalability in modern applications.",
-        slug: "building-scalable-web-apps-with-nextjs",
-    },
-    {
-        id: 2,
-        title: "Mastering React for Frontend Development",
-        image: "/images/OIP.webp",
-        author: "Tech Team",
-        date: "Aug 28, 2025",
-        description:
-            "Tips, tricks, and best practices for writing clean and maintainable React code.",
-        slug: "mastering-react-for-frontend-development",
-    },
-    {
-        id: 3,
-        title: "Laravel & APIs: A Complete Guide",
-        image: "/images/OIP.webp",
-        author: "Dev Community",
-        date: "Aug 15, 2025",
-        description:
-            "Learn how to build and secure RESTful APIs with Laravel, step by step.",
-        slug: "laravel-apis-a-complete-guide",
-    },
-];
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export const Blogs: React.FC = () => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const blogsPerPage = 3;
+
+    // calculate indexes
+    const indexOfLastBlog = currentPage * blogsPerPage;
+    const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+    const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+    const totalPages = Math.ceil(blogs.length / blogsPerPage);
+
+    const handlePageChange = (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
     return (
         <section
             className="py-12 md:py-24 px-6 md:px-12 relative"
@@ -61,56 +45,124 @@ export const Blogs: React.FC = () => {
                 description="Stay updated with insights, tips, and stories from EthioDigitals to inspire your digital journey."
             />
 
+            {/* Blog Grid */}
             <div className="grid md:grid-cols-3 gap-6 mt-8">
-                {blogs.map((blog) => (
+                {currentBlogs.map((blog) => (
                     <article
-                        key={blog.id}
-                        data-aos="fade-up"
+                        data-aos="fade-left"
                         data-aos-delay={100 + blog.id * 50}
-                        className="bg-gray-900/30 rounded-xl shadow-md overflow-hidden flex flex-col group hover:shadow-xl transition"
+                        key={blog.id}
+                        className="group relative bg-gradient-to-b from-gray-800/30 to-gray-900/50 rounded-2xl overflow-hidden border border-gray-700/30 hover:border-purple-500/30 transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10"
                     >
                         {/* Image */}
-                        <div className="relative h-48 w-full overflow-hidden">
+                        <div className="relative h-56 overflow-hidden">
                             <Image
                                 src={blog.image}
-                                alt={blog.title}
+                                alt={`${blog.title} cover image`}
                                 fill
-                                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                className="object-cover transition-transform duration-700 group-hover:scale-110"
                             />
+                            <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-gray-900/80 backdrop-blur-sm text-xs font-medium text-purple-300">
+                                {blog.category}
+                            </span>
+                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-70"></div>
                         </div>
 
                         {/* Content */}
-                        <div className="p-6 flex flex-col flex-1">
-                            <h3 className="text-xl font-semibold mb-2 group-hover:text-pink-500 transition-colors">
-                                {blog.title}
-                            </h3>
-                            <p className="text-gray-400 text-sm flex-1">{blog.description}</p>
+                        <div className="p-6">
+                            <header>
+                                <Link
+                                    href={`/news/${blog.slug}`}
+                                    className="text-xl font-semibold text-white mb-3 block group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-300"
+                                >
+                                    {blog.title}
+                                </Link>
+                            </header>
+
+                            <p className="text-gray-400 mb-4 line-clamp-2">{blog.excerpt}</p>
 
                             {/* Meta info */}
-                            <div className="flex items-center gap-4 text-sm text-gray-500 mt-4">
-                                <div className="flex items-center gap-1">
-                                    <User size={16} aria-hidden="true" />
+                            <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                                <div className="flex items-center gap-2">
+                                    <User className="w-4 h-4" aria-hidden="true" />
                                     <span>{blog.author}</span>
                                 </div>
-                                <div className="flex items-center gap-1">
-                                    <Clock size={16} aria-hidden="true" />
-                                    <span>{blog.date}</span>
+                                <div className="flex items-center gap-2">
+                                    <Calendar className="w-4 h-4" aria-hidden="true" />
+                                    <time dateTime={new Date(blog.date).toISOString()}>
+                                        {blog.date}
+                                    </time>
                                 </div>
                             </div>
 
-                            {/* Read More link */}
-                            <Link
-                                href={`/news/${blog.slug || blog.id}`}
-                                className="mt-6 inline-block group relative"
-                            >
-                                <span className="text-pink-600 font-medium relative">
-                                    Read More...
-                                    <span className="absolute left-0 -bottom-1 w-[10px] h-0.5 bg-pink-400 transition-all duration-500 group-hover:w-full"></span>
-                                </span>
-                            </Link>
+                            <footer className="flex items-center justify-between">
+                                <div className="flex items-center gap-4 text-gray-400">
+                                    <div className="flex items-center gap-1">
+                                        <Heart className="w-4 h-4" aria-hidden="true" />
+                                        <span>{blog.likes}</span>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                                        <span>{blog.comments}</span>
+                                    </div>
+                                    <span>{blog.readTime}</span>
+                                </div>
+
+                                <Link
+                                    href={`/news/${blog.slug}`}
+                                    className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors font-medium"
+                                >
+                                    Read More
+                                    <ArrowRight className="w-4 h-4 ml-1" />
+                                </Link>
+                            </footer>
                         </div>
                     </article>
                 ))}
+            </div>
+
+            {/* Pagination */}
+            <div className="mt-10 flex justify-center">
+                <Pagination>
+                    <PaginationContent>
+                        <PaginationItem>
+                            <PaginationPrevious
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handlePageChange(currentPage - 1);
+                                }}
+                            />
+                        </PaginationItem>
+
+                        {[...Array(totalPages)].map((_, i) => (
+                            <PaginationItem key={i}>
+                                <PaginationLink
+                                    href="#"
+                                    isActive={currentPage === i + 1}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handlePageChange(i + 1);
+                                    }}
+                                >
+                                    {i + 1}
+                                </PaginationLink>
+                            </PaginationItem>
+                        ))}
+
+                        {totalPages > 3 && <PaginationEllipsis />}
+
+                        <PaginationItem>
+                            <PaginationNext
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handlePageChange(currentPage + 1);
+                                }}
+                            />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
             </div>
         </section>
     );

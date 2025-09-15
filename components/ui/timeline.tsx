@@ -11,12 +11,33 @@ type Step = {
 };
 
 const steps: Step[] = [
-    { title: "Idea & Research", desc: "We start with brainstorming, research, and understanding client needs.", icon: <Lightbulb className="w-6 h-6 text-yellow-500" /> },
-    { title: "Design", desc: "Our team creates wireframes, UI/UX, and prototypes for your product.", icon: <PenTool className="w-6 h-6 text-pink-500" /> },
-    { title: "Development", desc: "We build scalable, modern, and reliable solutions with clean code.", icon: <Code className="w-6 h-6 text-blue-500" /> },
-    { title: "Launch", desc: "We test thoroughly, deploy securely, and launch your product.", icon: <Rocket className="w-6 h-6 text-green-500" /> },
-    { title: "Support", desc: "We provide ongoing support, updates, and improvements.", icon: <Headphones className="w-6 h-6 text-purple-500" /> },
+    {
+        title: "Understanding Your Needs",
+        desc: "We begin by listening carefully and researching the best solutions for your goals.",
+        icon: <Lightbulb className="w-6 h-6 text-yellow-500" />
+    },
+    {
+        title: "Creative Design & Planning",
+        desc: "We shape ideas into clear designs, strategies, and content that fit your vision.",
+        icon: <PenTool className="w-6 h-6 text-pink-500" />
+    },
+    {
+        title: "Building & Development",
+        desc: "We create modern websites, apps, campaigns, and visuals with attention to detail.",
+        icon: <Code className="w-6 h-6 text-blue-500" />
+    },
+    {
+        title: "Launch & Delivery",
+        desc: "We test, finalize, and deliver your project to the world with confidence.",
+        icon: <Rocket className="w-6 h-6 text-green-500" />
+    },
+    {
+        title: "Ongoing Support & Growth",
+        desc: "We continue to assist you with updates, improvements, and long-term guidance.",
+        icon: <Headphones className="w-6 h-6 text-purple-500" />
+    },
 ];
+
 
 const ProductTimeline: React.FC = () => {
     const [progress, setProgress] = useState(0);
@@ -34,14 +55,13 @@ const ProductTimeline: React.FC = () => {
     }, []);
 
     return (
-        <section className="w-full px-6 md:px-12 relative py-16" aria-labelledby="process-heading">
+        <section className="relative w-full px-6 md:px-12 py-16" aria-labelledby="process-heading">
             <div className="mx-auto">
                 <SectionHeading
                     subtitle="How We Work"
                     title="Our Process"
                     description="Learn about the steps we take to deliver innovative digital solutions efficiently and effectively."
                 />
-
                 {/* Desktop Timeline */}
                 <div className="hidden md:flex items-start justify-between relative mt-10">
                     {steps.map((step, idx) => (
@@ -84,7 +104,7 @@ const ProductTimeline: React.FC = () => {
                                 <div className="absolute -left-2 top-6 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-gray-900/30 dark:border-r-gray-800/40" />
                                 <div className="flex flex-row gap-3 items-center">
                                     <span className="px-2 py-1 rounded-full bg-pink-900/50 text-xs font-medium">{idx + 1}</span>
-                                    <h3 className="font-semibold text-lg">{step.title}</h3>
+                                    <h3 className="font-semibold text-base">{step.title}</h3>
                                 </div>
                                 <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">{step.desc}</p>
                             </div>

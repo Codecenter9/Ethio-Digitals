@@ -79,10 +79,6 @@ const CTA = () => {
                     )}
                 </Button>
             </form>
-
-            <p className="text-center text-gray-500 dark:text-gray-400 mt-4 text-sm">
-                No spam, unsubscribe anytime.
-            </p>
         </section>
     );
 };

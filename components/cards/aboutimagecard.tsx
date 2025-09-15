@@ -4,7 +4,7 @@ import React from 'react'
 const AboutImageCard = () => {
     return (
         <div>
-            <div className="grid grid-cols-1 md:grid-cols-3 pt-12 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 pt-0 gap-8">
                 {/* Key Points with Icons - Updated background */}
                 <div
                     data-aos="fade-up"

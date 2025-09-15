@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +8,7 @@ import {
   Heart,
   Clock,
   Share2,
+  MessageCircle,
 } from "lucide-react";
 import blogs from "@/data/blogs";
 import { Blog } from "@/types/blog";
@@ -16,13 +18,31 @@ export async function generateStaticParams() {
   return blogs.map((b) => ({ slug: b.slug }));
 }
 
-// Categories mock data (could later be dynamic)
+// Categories mock data
 const categories: { name: string; count: number }[] = [
   { name: "Technology", count: 12 },
   { name: "Design", count: 8 },
   { name: "Business", count: 5 },
   { name: "Lifestyle", count: 7 },
   { name: "Travel", count: 3 },
+];
+
+// Mock comments data
+const comments = [
+  {
+    id: 1,
+    author: "Jane Smith",
+    avatar: "/avatars/1.jpg",
+    date: "2 days ago",
+    content: "This was a really insightful post. Thanks for sharing your expertise on this topic!",
+  },
+  {
+    id: 2,
+    author: "Alex Johnson",
+    avatar: "/avatars/2.jpg",
+    date: "3 days ago",
+    content: "I've been struggling with this exact issue. Your solution worked perfectly for me.",
+  },
 ];
 
 export default function BlogPage({ params }: { params: { slug: string } }) {
@@ -73,6 +93,10 @@ export default function BlogPage({ params }: { params: { slug: string } }) {
                   <Clock className="w-4 h-4" />
                   <span>{blog.readTime}</span>
                 </div>
+                <div className="flex items-center gap-2">
+                  <MessageCircle className="w-4 h-4" />
+                  <span>{blog.comments} comments</span>
+                </div>
               </div>
             </header>
 
@@ -90,44 +114,19 @@ export default function BlogPage({ params }: { params: { slug: string } }) {
             {/* Article Content */}
             <article className="prose prose-lg prose-invert max-w-none mb-12">
               <p className="lead text-xl text-gray-300 mb-8">{blog.excerpt}</p>
-
-              <h2 className="text-2xl font-bold mt-10 mb-4">Introduction</h2>
-              <p>
-                In today&apos;s rapidly evolving digital landscape, businesses
-                and individuals alike are constantly seeking innovative
-                solutions...
-              </p>
-
-              <h2 className="text-2xl font-bold mt-10 mb-4">Key Trends</h2>
-              <ul className="my-6 space-y-2">
-                <li className="flex items-start">
-                  <span className="text-purple-400 mr-2">•</span>
-                  AI-powered automation across industries
-                </li>
-                <li className="flex items-start">
-                  <span className="text-purple-400 mr-2">•</span>
-                  Decentralized technologies and Web3 integration
-                </li>
-                <li className="flex items-start">
-                  <span className="text-purple-400 mr-2">•</span>
-                  Sustainable tech solutions for environmental challenges
-                </li>
-              </ul>
             </article>
 
             {/* Tags */}
-            {/* {blog.tags && blog.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-12">
-                {blog.tags.map((tag: any, index: any) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 bg-purple-900/30 text-purple-400 rounded-full text-sm"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            )} */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {blog.tags?.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 bg-purple-500/10 text-purple-300 rounded-full text-sm"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
 
             {/* Footer Buttons */}
             <div className="flex items-center justify-between py-6 border-t border-b border-gray-800 mb-12">
@@ -148,14 +147,72 @@ export default function BlogPage({ params }: { params: { slug: string } }) {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-400">
-                  {blog.views ?? 0} views
+                  {blog.views ?? 1245} views
                 </span>
               </div>
             </div>
+
+            {/* Comments Section */}
+            <section className="mb-12">
+              <h2 className="text-2xl font-bold mb-6">Comments ({comments.length})</h2>
+
+              {/* Existing Comments */}
+              <div className="space-y-6 mb-8">
+                {comments.map((comment) => (
+                  <div key={comment.id} className="flex gap-4 p-4 bg-gray-800/30 rounded-lg">
+                    <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center flex-shrink-0">
+                      <User className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-medium">{comment.author}</span>
+                        <span className="text-sm text-gray-400">• {comment.date}</span>
+                      </div>
+                      <p className="text-gray-300">{comment.content}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Comment Form */}
+              <h3 className="text-xl font-bold mb-4">Leave a Comment</h3>
+              <form className="space-y-4">
+                <textarea
+                  placeholder="Your Comment"
+                  className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  rows={4}
+                  required
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors font-medium"
+                >
+                  Post Comment
+                </button>
+              </form>
+            </section>
           </main>
 
           {/* ================= SIDEBAR ================= */}
           <aside className="w-full lg:w-1/3 space-y-8">
+            {/* About Author */}
+            <div className="bg-gray-800/30 p-5 rounded-2xl">
+              <h3 className="font-bold mb-4">About the Author</h3>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center">
+                  <User className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-medium">{blog.author}</h4>
+                  <p className="text-sm text-gray-400">Senior Developer</p>
+                </div>
+              </div>
+              <p className="text-sm text-gray-300">
+                John is a seasoned developer with over 10 years of experience in web technologies
+                and a passion for teaching others through blog posts and tutorials.
+              </p>
+            </div>
+
             {/* Categories */}
             <div className="bg-gray-800/30 p-5 rounded-2xl">
               <h3 className="font-bold mb-4">Categories</h3>
@@ -187,18 +244,18 @@ export default function BlogPage({ params }: { params: { slug: string } }) {
                   <Link
                     key={b.id}
                     href={`/news/${b.slug}`}
-                    className="flex gap-3 items-center"
+                    className="flex gap-3 items-center group"
                   >
-                    <div className="w-16 h-16 relative rounded-lg overflow-hidden">
+                    <div className="w-16 h-16 relative rounded-lg overflow-hidden flex-shrink-0">
                       <Image
                         src={b.image}
                         alt={b.title}
                         fill
-                        className="object-cover"
+                        className="object-cover group-hover:scale-105 transition-transform"
                       />
                     </div>
                     <div>
-                      <h4 className="font-medium text-sm line-clamp-2">
+                      <h4 className="font-medium text-sm line-clamp-2 group-hover:text-purple-400 transition-colors">
                         {b.title}
                       </h4>
                       <p className="text-xs text-gray-400">{b.date}</p>
@@ -206,6 +263,28 @@ export default function BlogPage({ params }: { params: { slug: string } }) {
                   </Link>
                 ))}
               </div>
+            </div>
+
+            {/* Newsletter Subscription */}
+            <div className="bg-gray-800/30 p-5 rounded-2xl">
+              <h3 className="font-bold mb-4">Subscribe to Newsletter</h3>
+              <p className="text-sm text-gray-300 mb-4">
+                Stay updated with our latest news and articles.
+              </p>
+              <form className="space-y-3">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="w-full px-4 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors font-medium text-sm"
+                >
+                  Subscribe
+                </button>
+              </form>
             </div>
           </aside>
         </div>

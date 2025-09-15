@@ -3,19 +3,20 @@ import { Target, Eye, CheckCircle2 } from "lucide-react";
 
 const MissionAndVision = () => {
     const missions = [
-        "Deliver high-quality software solutions tailored to client needs.",
-        "Empower businesses through innovative technology.",
-        "Create user-friendly designs that make an impact.",
-        "Provide continuous support and improvements for clients.",
-        "Encourage collaboration and knowledge sharing among teams.",
+        "Deliver high-quality and scalable software solutions tailored to client needs.",
+        "Empower businesses through digital marketing, branding, and social media strategies.",
+        "Design creative, user-friendly interfaces and impactful graphics that strengthen brand identity.",
+        "Leverage AI, IoT, and emerging technologies to solve real-world challenges.",
+        "Provide continuous support, updates, and innovation to ensure long-term client success.",
+        "Encourage teamwork, creativity, and knowledge sharing across our diverse service areas.",
     ];
 
     const visions = [
-        "Become a trusted leader in software innovation globally.",
-        "Inspire creativity and collaboration within the tech community.",
-        "Shape a future where technology solves real-world problems.",
-        "Promote sustainable and ethical use of technology.",
-        "Expand opportunities for young talents in technology.",
+        "Become a global leader in software, digital marketing, and creative technology solutions.",
+        "Shape the future of business transformation through AI, IoT, and innovative tech.",
+        "Create opportunities for young talent in software, design, and digital innovation.",
+        "Promote ethical and sustainable use of technology for communities and organizations.",
+        "Build a worldwide creative-tech hub that connects Ethiopia with the global digital economy.",
     ];
 
     return (
@@ -28,7 +29,7 @@ const MissionAndVision = () => {
                 <div className="text-start mb-16">
                     <div
                         data-aos="fade-down"
-                        className="inline-flex items-center mb-2 px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20"
+                        className="inline-flex items-center mb-2 px-3 py-1 rounded-full bg-gradient-to-r from-pink-500/10 to-blue-500/10 border border-pink-500/20"
                     >
                         <span className="text-sm font-medium text-pink-500">
                             Mission and Vision
@@ -46,8 +47,9 @@ const MissionAndVision = () => {
                         data-aos-delay={100}
                         className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl"
                     >
-                        Guiding principles that drive our innovation and commitment to
-                        excellence.
+                        EthioDigitals is more than just a company – we are innovators,
+                        creators, and problem solvers, driven by a shared vision to
+                        empower businesses and communities in the digital age.
                     </p>
                 </div>
 
@@ -57,16 +59,16 @@ const MissionAndVision = () => {
                     <div
                         data-aos="fade-right"
                         data-aos-delay={50}
-                        className="bg-gradient-to-l from-purple-900/10 to-gray-950 rounded-2xl p-8 relative overflow-hidden group hover:shadow-2xl transition-all duration-500"
+                        className="bg-gradient-to-br from-blue-900/20 to-gray-950 rounded-2xl p-8 relative overflow-hidden group hover:shadow-2xl transition-all duration-500"
                     >
-                        <div className="absolute -top-10 -right-10 w-28 h-28 bg-pink-500/10 rounded-full blur-xl group-hover:bg-pink-500/20 transition-all duration-700"></div>
-                        <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-blue-500/10 rounded-full blur-xl group-hover:bg-blue-500/20 transition-all duration-700"></div>
+                        <div className="absolute -top-10 -right-10 w-28 h-28 bg-pink-500/20 rounded-full blur-xl group-hover:bg-pink-500/30 transition-all duration-700"></div>
+                        <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-purple-500/20 rounded-full blur-xl group-hover:bg-purple-500/30 transition-all duration-700"></div>
 
                         <div className="flex items-center gap-3 mb-8 relative z-10">
-                            <div className="p-3 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl shadow-lg">
+                            <div className="p-3 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl shadow-lg">
                                 <Target className="w-8 h-8 text-white" />
                             </div>
-                            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-pink-600">
+                            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-purple-400">
                                 Our Mission
                             </h2>
                         </div>
@@ -75,9 +77,9 @@ const MissionAndVision = () => {
                             {missions.map((mission, idx) => (
                                 <li
                                     key={idx}
-                                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300"
+                                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-100/10 dark:hover:bg-gray-700/50 transition-all duration-300"
                                 >
-                                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                                    <CheckCircle2 className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" />
                                     <span className="text-gray-700 dark:text-gray-300">
                                         {mission}
                                     </span>
@@ -111,16 +113,16 @@ const MissionAndVision = () => {
                     <div
                         data-aos="fade-left"
                         data-aos-delay={50}
-                        className="bg-gradient-to-r from-purple-900/10 to-gray-950 rounded-2xl p-8 relative overflow-hidden group hover:shadow-2xl transition-all duration-500"
+                        className="bg-gradient-to-bl from-blue-900/20  to-gray-950 rounded-2xl p-8 relative overflow-hidden group hover:shadow-2xl transition-all duration-500"
                     >
-                        <div className="absolute -top-10 -right-10 w-28 h-28 bg-blue-500/10 rounded-full blur-xl group-hover:bg-blue-500/20 transition-all duration-700"></div>
-                        <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-pink-500/10 rounded-full blur-xl group-hover:bg-pink-500/20 transition-all duration-700"></div>
+                        <div className="absolute -top-10 -right-10 w-28 h-28 bg-blue-500/20 rounded-full blur-xl group-hover:bg-blue-500/30 transition-all duration-700"></div>
+                        <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-pink-500/20 rounded-full blur-xl group-hover:bg-pink-500/30 transition-all duration-700"></div>
 
                         <div className="flex items-center gap-3 mb-8 relative z-10">
-                            <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg">
+                            <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl shadow-lg">
                                 <Eye className="w-8 h-8 text-white" />
                             </div>
-                            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-600">
+                            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
                                 Our Vision
                             </h2>
                         </div>
@@ -129,10 +131,12 @@ const MissionAndVision = () => {
                             {visions.map((vision, idx) => (
                                 <li
                                     key={idx}
-                                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300"
+                                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-100/10 dark:hover:bg-gray-700/50 transition-all duration-300"
                                 >
-                                    <CheckCircle2 className="w-5 h-5 text-pink-500 mt-1 flex-shrink-0" />
-                                    <span className="text-gray-700 dark:text-gray-300">{vision}</span>
+                                    <CheckCircle2 className="w-5 h-5 text-pink-400 mt-1 flex-shrink-0" />
+                                    <span className="text-gray-700 dark:text-gray-300">
+                                        {vision}
+                                    </span>
                                 </li>
                             ))}
                         </ul>
