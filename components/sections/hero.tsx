@@ -5,7 +5,7 @@ import { PlayCircle, CirclePercent } from "lucide-react";
 import Link from "next/link";
 import { Spotlight } from "../ui/spotlight-new";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Ensure AOS styles are imported
+import "aos/dist/aos.css";
 
 export function Hero() {
     useEffect(() => {
@@ -25,7 +25,7 @@ export function Hero() {
             <Spotlight />
 
             <div className="relative max-w-5xl z-10 px-6 mx-auto flex flex-col items-center text-center">
-                {/* Limited Offer Badge */}
+
                 <div
                     className="top-6 z-20 mb-6"
                     data-aos="fade-down"
@@ -39,32 +39,27 @@ export function Hero() {
                     </div>
                 </div>
 
-                {/* Hero Title */}
                 <h1
                     data-aos="fade-up"
                     data-aos-delay="100"
                     className="text-3xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-blue-500 via-pink-500 to-neutral-400"
                 >
-                    Smart Digital Solutions <br /> for Growing Businesses
+                    Your Trusted Partner <br /> for Digital Growth
                 </h1>
-
-                {/* Hero Subtitle */}
                 <p
                     data-aos="fade-up"
                     data-aos-delay="150"
                     className="mt-4 text-base md:text-lg text-neutral-300 max-w-xl"
                 >
-                    Build. Scale. Innovate. We craft modern web, mobile, and AI-powered
-                    solutions to help your business shine online.
+                    We build modern apps and websites, boost your online presence with marketing, create engaging content, manage social media, and design visuals that make your brand stand out.
                 </p>
 
-                {/* Call to Actions */}
                 <div className="mt-8 flex flex-row items-center gap-4">
                     <Link
                         href="/contact"
                         data-aos="fade-up"
                         data-aos-delay="300"
-                        className="group relative px-6 py-3 flex items-center justify-center gap-3 rounded-full text-lg text-white bg-pink-500 overflow-hidden transition-all duration-500 ease-out hover:bg-pink-600"
+                        className="group relative px-6 py-2 flex items-center justify-center gap-3 rounded-full text-lg text-white bg-pink-500 overflow-hidden transition-all duration-500 ease-out hover:bg-pink-600"
                     >
                         <span className="absolute inset-0 bg-gray-950 w-0 group-hover:w-full transition-all duration-500 ease-out"></span>
                         <span className="relative z-10">Get Started</span>
@@ -81,6 +76,6 @@ export function Hero() {
                     </button>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }

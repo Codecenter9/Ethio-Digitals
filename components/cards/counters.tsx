@@ -42,9 +42,9 @@ const Counter = ({ target, text, suffix }: { target: number; text: string; suffi
 const Counters = () => {
     const constants = [
         { count: 100, text: "Client Satisfaction", suffix: "%" },
-        { count: 120, text: "Projects Completed" },
-        { count: 5, text: "Years Of Experience" },
-        { count: 50, text: "Team Members" }, // replaced "Innovative Solutions"
+        { count: 25, text: "Projects Completed" },
+        { count: 3, text: "Years Of Experience" },
+        { count: 15, text: "Team Members" }, // replaced "Innovative Solutions"
     ];
 
     return (
