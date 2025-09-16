@@ -14,8 +14,6 @@ interface TopbarProps {
 
 export default function Topbar({
   onMenuClick,
-  isSidebarCollapsed,
-  onToggleSidebar,
 }: TopbarProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);

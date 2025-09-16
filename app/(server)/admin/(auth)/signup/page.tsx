@@ -1,44 +1,44 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabaseClient";
-import Link from "next/link";
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// import { supabase } from "@/lib/supabaseClient";
+// import Link from "next/link";
 
 export default function SignupPage() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const router = useRouter();
+    // const [name, setName] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    // const [isLoading, setIsLoading] = useState(false);
+    // const router = useRouter();
 
-    const handleSignup = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
+    // const handleSignup = async (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     setIsLoading(true);
 
-        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-            email,
-            password,
-        });
+    //     const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+    //         email,
+    //         password,
+    //     });
 
-        if (signUpError) {
-            alert(signUpError.message);
-            setIsLoading(false);
-            return;
-        }
+    //     if (signUpError) {
+    //         alert(signUpError.message);
+    //         setIsLoading(false);
+    //         return;
+    //     }
 
-        const user = signUpData.user;
-        if (!user) {
-            alert("Signup failed. Please try again.");
-            setIsLoading(false);
-            return;
-        }
-        else {
-            alert("Signup successful! Please check your email to confirm.");
-            router.replace("/admin/login");
-        }
-        setIsLoading(false);
-    };
+    //     const user = signUpData.user;
+    //     if (!user) {
+    //         alert("Signup failed. Please try again.");
+    //         setIsLoading(false);
+    //         return;
+    //     }
+    //     else {
+    //         alert("Signup successful! Please check your email to confirm.");
+    //         router.replace("/admin/login");
+    //     }
+    //     setIsLoading(false);
+    // };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-purple-900 p-4">

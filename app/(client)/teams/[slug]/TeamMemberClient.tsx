@@ -1,11 +1,46 @@
 "use client";
+import { TeamMember } from "@/data/team";
 import { Github, Linkedin, Twitter, Globe, Mail, ArrowLeft, Calendar, MapPin, BookOpen, Award } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+type Socials = {
+    github?: string;
+    linkedin?: string;
+    twitter?: string;
+    portfolio?: string;
+};
+
+// Define a type for projects
+type Project = {
+    title: string;
+    description: string;
+    technologies: string[];
+};
+
+// Define a type for a team member
+type Member = {
+    id: string;
+    name: string;
+    slug: string;
+    position?: string;
+    profession?: string;
+    image?: string;
+    bio?: string;
+    details?: string;
+    socials?: Socials;
+    skills?: string[];
+    projects?: number;
+    experience?: string;
+    location?: string;
+    joined?: string;
+    email?: string;
+    phone?: string;
+};
+
 // Enhanced sample data structure for fallback
-const sampleMember = {
+const sampleMember: Member = {
     id: "1",
     name: "John Doe",
     slug: "john-doe",
@@ -30,13 +65,13 @@ const sampleMember = {
 };
 
 // Default skills to show when none are provided
-const defaultSkills = [
+const defaultSkills: string[] = [
     "JavaScript", "React", "Node.js", "TypeScript",
     "HTML/CSS", "Git", "REST APIs", "Problem Solving"
 ];
 
 // Default projects to show when none are provided
-const defaultProjects = [
+const defaultProjects: Project[] = [
     {
         title: "E-Commerce Platform",
         description: "A full-stack e-commerce solution with React and Node.js",
@@ -54,13 +89,13 @@ const defaultProjects = [
     }
 ];
 
-export default function TeamMemberClient({ member }: { member: any }) {
-    const [activeTab, setActiveTab] = useState("about");
+export default function TeamMemberClient({ member }: { member: TeamMember }) {
+    const [activeTab, setActiveTab] = useState<"about" | "skills" | "projects">("about");
 
-    const teamMember = member || sampleMember;
+    const teamMember: Member = member || sampleMember;
 
-    const socials = teamMember.socials || {};
-    const safeSocials = {
+    const socials: Socials = teamMember.socials || {};
+    const safeSocials: Required<Socials> = {
         github: socials.github || "#",
         linkedin: socials.linkedin || "#",
         twitter: socials.twitter || "#",
@@ -68,16 +103,15 @@ export default function TeamMemberClient({ member }: { member: any }) {
     };
 
     // Use provided skills or default skills if none available
-    const skills = Array.isArray(teamMember.skills) && teamMember.skills.length > 0
+    const skills: string[] = Array.isArray(teamMember.skills) && teamMember.skills.length > 0
         ? teamMember.skills
         : defaultSkills;
 
     // Determine projects count and data
-    const projectsCount = teamMember.projects > 0 ? teamMember.projects : 8;
-    const projectsToShow = teamMember.projects > 0 ? [] : defaultProjects;
+    const projectsCount: number = teamMember.projects && teamMember.projects > 0 ? teamMember.projects : 8;
+    const projectsToShow: Project[] = teamMember.projects && teamMember.projects > 0 ? [] : defaultProjects;
 
-    // Format email properly
-    const email = teamMember.email || `${teamMember.slug}@ethiodigitals.com`;
+    const email: string = teamMember.email || `${teamMember.slug}@ethiodigitals.com`;
 
     return (
         <div className="min-h-screen py-12 md:py-24 bg-gray-950 text-white">
@@ -102,25 +136,17 @@ export default function TeamMemberClient({ member }: { member: any }) {
 
                     {/* Profile Info */}
                     <div className="flex-1">
-                        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                            {teamMember.name}
-                        </h1>
-                        <p className="text-xl text-purple-400 mb-6">
-                            {teamMember.profession || teamMember.position}
-                        </p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{teamMember.name}</h1>
+                        <p className="text-xl text-purple-400 mb-6">{teamMember.profession || teamMember.position}</p>
 
                         {/* Stats */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                             <div className="bg-gray-900/50 p-4 rounded-lg">
-                                <div className="text-2xl font-bold text-purple-400">
-                                    {projectsCount}+
-                                </div>
+                                <div className="text-2xl font-bold text-purple-400">{projectsCount}+</div>
                                 <div className="text-sm text-gray-400">Projects</div>
                             </div>
                             <div className="bg-gray-900/50 p-4 rounded-lg">
-                                <div className="text-2xl font-bold text-purple-400">
-                                    {teamMember.experience || "3+"}
-                                </div>
+                                <div className="text-2xl font-bold text-purple-400">{teamMember.experience || "3+"}</div>
                                 <div className="text-sm text-gray-400">Years Of Experience</div>
                             </div>
                             <div className="bg-gray-900/50 p-4 rounded-lg">
@@ -141,48 +167,25 @@ export default function TeamMemberClient({ member }: { member: any }) {
 
                         {/* Social Links */}
                         <div className="flex flex-wrap gap-3 mb-6">
-                            <Link
-                                href={safeSocials.github}
-                                className="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
+                            <Link href={safeSocials.github} className="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors" target="_blank" rel="noopener noreferrer">
                                 <Github className="w-5 h-5 mr-2" />
                                 GitHub
                             </Link>
-                            <Link
-                                href={safeSocials.linkedin}
-                                className="flex items-center px-4 py-2 bg-blue-800/30 hover:bg-blue-800/50 rounded-lg transition-colors"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
+                            <Link href={safeSocials.linkedin} className="flex items-center px-4 py-2 bg-blue-800/30 hover:bg-blue-800/50 rounded-lg transition-colors" target="_blank" rel="noopener noreferrer">
                                 <Linkedin className="w-5 h-5 mr-2" />
                                 LinkedIn
                             </Link>
-                            <Link
-                                href={safeSocials.twitter}
-                                className="flex items-center px-4 py-2 bg-sky-800/30 hover:bg-sky-800/50 rounded-lg transition-colors"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
+                            <Link href={safeSocials.twitter} className="flex items-center px-4 py-2 bg-sky-800/30 hover:bg-sky-800/50 rounded-lg transition-colors" target="_blank" rel="noopener noreferrer">
                                 <Twitter className="w-5 h-5 mr-2" />
                                 Twitter
                             </Link>
                             {safeSocials.portfolio && safeSocials.portfolio !== "#" && (
-                                <Link
-                                    href={safeSocials.portfolio}
-                                    className="flex items-center px-4 py-2 bg-purple-800/30 hover:bg-purple-800/50 rounded-lg transition-colors"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
+                                <Link href={safeSocials.portfolio} className="flex items-center px-4 py-2 bg-purple-800/30 hover:bg-purple-800/50 rounded-lg transition-colors" target="_blank" rel="noopener noreferrer">
                                     <Globe className="w-5 h-5 mr-2" />
                                     Portfolio
                                 </Link>
                             )}
-                            <Link
-                                href={`mailto:${email}`}
-                                className="flex items-center px-4 py-2 bg-pink-800/30 hover:bg-pink-800/50 rounded-lg transition-colors"
-                            >
+                            <Link href={`mailto:${email}`} className="flex items-center px-4 py-2 bg-pink-800/30 hover:bg-pink-800/50 rounded-lg transition-colors">
                                 <Mail className="w-5 h-5 mr-2" />
                                 Email
                             </Link>
@@ -195,28 +198,19 @@ export default function TeamMemberClient({ member }: { member: any }) {
                     <nav className="flex space-x-8">
                         <button
                             onClick={() => setActiveTab("about")}
-                            className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === "about"
-                                ? "border-purple-500 text-purple-400"
-                                : "border-transparent text-gray-400 hover:text-gray-300"
-                                }`}
+                            className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === "about" ? "border-purple-500 text-purple-400" : "border-transparent text-gray-400 hover:text-gray-300"}`}
                         >
                             About
                         </button>
                         <button
                             onClick={() => setActiveTab("skills")}
-                            className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === "skills"
-                                ? "border-purple-500 text-purple-400"
-                                : "border-transparent text-gray-400 hover:text-gray-300"
-                                }`}
+                            className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === "skills" ? "border-purple-500 text-purple-400" : "border-transparent text-gray-400 hover:text-gray-300"}`}
                         >
                             Skills
                         </button>
                         <button
                             onClick={() => setActiveTab("projects")}
-                            className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === "projects"
-                                ? "border-purple-500 text-purple-400"
-                                : "border-transparent text-gray-400 hover:text-gray-300"
-                                }`}
+                            className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === "projects" ? "border-purple-500 text-purple-400" : "border-transparent text-gray-400 hover:text-gray-300"}`}
                         >
                             Projects
                         </button>
