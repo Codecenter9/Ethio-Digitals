@@ -8,6 +8,7 @@ import SharedTitle from "@/components/admin/layout/sharedtitle";
 
 export default function TeamForm() {
     const [name, setName] = useState("");
+    const [role, setRole] = useState("");
     const [profession, setProfession] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -59,13 +60,14 @@ export default function TeamForm() {
             }
 
             const { error: insertError } = await supabase.from("teams").insert([
-                { name, profession, email, phone, details, profile_url: imageUrl },
+                { name, role, profession, email, phone, details, profile_url: imageUrl },
             ]);
 
             if (insertError) throw insertError;
 
             setSuccess(true);
             setName("");
+            setRole("");
             setProfession("");
             setEmail("");
             setPhone("");
@@ -115,6 +117,21 @@ export default function TeamForm() {
                                         placeholder="Enter full name"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
+                                        className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
+                                        focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
+                                        required
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                                        Role *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter your role"
+                                        value={role}
+                                        onChange={(e) => setRole(e.target.value)}
                                         className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
                                         focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
                                         required

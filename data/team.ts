@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabaseClient";
 export type TeamMember = {
   id: string;
   name: string;
+  role:string;
   slug: string;
   position: string;
   image: string;
@@ -43,7 +44,7 @@ const defaultTeam = {
 export async function getTeam(): Promise<TeamMember[]> {
   const { data, error } = await supabase
     .from("teams")
-    .select("id, name, profession, details, profile_url, email, phone");
+    .select("id, name, profession, details, profile_url, email, phone,role");
 
   if (error) {
     console.error("Error fetching team:", error.message);
@@ -59,6 +60,7 @@ export async function getTeam(): Promise<TeamMember[]> {
     image: member.profile_url || defaultTeam.image,
     email: member.email,
     phone: member.phone,
+    role:member.role,
     slug: member.name.toLowerCase().replace(/\s+/g, "-"),
   }));
 }

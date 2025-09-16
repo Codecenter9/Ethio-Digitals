@@ -90,7 +90,7 @@ const Teams = () => {
                                     {member.name}
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
-                                <p className="text-sm text-gray-400 mt-1">{member.position}</p>
+                                <p className="text-sm text-gray-400 mt-1">{member.role}</p>
                             </div>
                         </div>
                     ))}
