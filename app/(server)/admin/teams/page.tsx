@@ -10,6 +10,9 @@ export default function TeamForm() {
     const [name, setName] = useState("");
     const [role, setRole] = useState("");
     const [profession, setProfession] = useState("");
+    const [address, setAddress] = useState("");
+    const [projects, setProjects] = useState("");
+    const [experience, setExperience] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [details, setDetails] = useState("");
@@ -60,7 +63,7 @@ export default function TeamForm() {
             }
 
             const { error: insertError } = await supabase.from("teams").insert([
-                { name, role, profession, email, phone, details, profile_url: imageUrl },
+                { name, role, profession, address, projects, experience, email, phone, details, profile_url: imageUrl },
             ]);
 
             if (insertError) throw insertError;
@@ -68,6 +71,9 @@ export default function TeamForm() {
             setSuccess(true);
             setName("");
             setRole("");
+            setAddress("");
+            setExperience("");
+            setProjects("");
             setProfession("");
             setEmail("");
             setPhone("");
@@ -140,7 +146,7 @@ export default function TeamForm() {
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        Profession *
+                                        Profession
                                     </label>
                                     <input
                                         type="text"
@@ -149,7 +155,7 @@ export default function TeamForm() {
                                         onChange={(e) => setProfession(e.target.value)}
                                         className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
                                         focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
-                                        required
+
                                     />
                                 </div>
 
@@ -170,7 +176,7 @@ export default function TeamForm() {
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        Phone Number *
+                                        Phone Number
                                     </label>
                                     <input
                                         type="tel"
@@ -179,7 +185,21 @@ export default function TeamForm() {
                                         onChange={(e) => setPhone(e.target.value)}
                                         className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
                                         focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
-                                        required
+
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                                        Address
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter address"
+                                        value={address}
+                                        onChange={(e) => setAddress(e.target.value)}
+                                        className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
+                                        focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
+
                                     />
                                 </div>
                             </div>
@@ -200,7 +220,35 @@ export default function TeamForm() {
                             <div className="space-y-5">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        Details *
+                                        Year of Experience
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter year of experience"
+                                        value={experience}
+                                        onChange={(e) => setExperience(e.target.value)}
+                                        className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
+                                        focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
+
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                                        Total Projects
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="Enter total projects finished"
+                                        value={projects}
+                                        onChange={(e) => setProjects(e.target.value)}
+                                        className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
+                                        focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
+
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                                        Details
                                     </label>
                                     <textarea
                                         placeholder="Tell us about this team member's role, skills, and background"
@@ -209,7 +257,7 @@ export default function TeamForm() {
                                         className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
                                         focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
                                         rows={5}
-                                        required
+
                                     />
                                 </div>
 

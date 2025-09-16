@@ -32,11 +32,12 @@ type Member = {
     socials?: Socials;
     skills?: string[];
     projects?: number;
-    experience?: string;
-    location?: string;
+    experience?: number;
+    address?: string;
     joined?: string;
     email?: string;
     phone?: string;
+    role: string;
 };
 
 // Enhanced sample data structure for fallback
@@ -57,11 +58,12 @@ const sampleMember: Member = {
     },
     skills: ["React", "Node.js", "TypeScript", "AWS"],
     projects: 12,
-    experience: "5+ years",
-    location: "Addis Ababa, Ethiopia",
+    experience: 3,
+    address: "Addis Ababa, Ethiopia",
     joined: "2022",
     email: "john@ethiodigitals.com",
-    phone: "+251 912 345 678"
+    phone: "+251 912 345 678",
+    role: "Full-Stack Developer"
 };
 
 // Default skills to show when none are provided
@@ -108,7 +110,6 @@ export default function TeamMemberClient({ member }: { member: TeamMember }) {
         : defaultSkills;
 
     // Determine projects count and data
-    const projectsCount: number = teamMember.projects && teamMember.projects > 0 ? teamMember.projects : 8;
     const projectsToShow: Project[] = teamMember.projects && teamMember.projects > 0 ? [] : defaultProjects;
 
     const email: string = teamMember.email || `${teamMember.slug}@ethiodigitals.com`;
@@ -142,17 +143,17 @@ export default function TeamMemberClient({ member }: { member: TeamMember }) {
                         {/* Stats */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                             <div className="bg-gray-900/50 p-4 rounded-lg">
-                                <div className="text-2xl font-bold text-purple-400">{projectsCount}+</div>
+                                <div className="text-2xl font-bold text-purple-400">{teamMember.projects || 8}+</div>
                                 <div className="text-sm text-gray-400">Projects</div>
                             </div>
                             <div className="bg-gray-900/50 p-4 rounded-lg">
-                                <div className="text-2xl font-bold text-purple-400">{teamMember.experience || "3+"}</div>
+                                <div className="text-2xl font-bold text-purple-400">{teamMember.experience || 3}+</div>
                                 <div className="text-sm text-gray-400">Years Of Experience</div>
                             </div>
                             <div className="bg-gray-900/50 p-4 rounded-lg">
                                 <div className="flex items-center text-sm text-gray-400">
                                     <MapPin className="w-4 h-4 mr-1" />
-                                    {teamMember.location || "Ethiopia"}
+                                    {teamMember.address || "Ethiopia"}
                                 </div>
                                 <div className="text-sm text-gray-400 mt-2">Location</div>
                             </div>
@@ -328,24 +329,24 @@ export default function TeamMemberClient({ member }: { member: TeamMember }) {
 
                             <div className="mb-4">
                                 <h4 className="text-sm font-medium text-gray-400 mb-1">Email</h4>
-                                <p className="text-purple-400">{email}</p>
+                                <p className="text-purple-400">{teamMember.email || ""}</p>
                             </div>
 
                             {teamMember.phone && (
                                 <div className="mb-4">
                                     <h4 className="text-sm font-medium text-gray-400 mb-1">Phone</h4>
-                                    <p className="text-purple-400">{teamMember.phone}</p>
+                                    <p className="text-purple-400">{teamMember.phone || ""}</p>
                                 </div>
                             )}
 
                             <div className="mb-4">
                                 <h4 className="text-sm font-medium text-gray-400 mb-1">Location</h4>
-                                <p className="text-white">{teamMember.location || "Addis Ababa, Ethiopia"}</p>
+                                <p className="text-white">{teamMember.address || "Addis Ababa, Ethiopia"}</p>
                             </div>
 
                             <div>
                                 <h4 className="text-sm font-medium text-gray-400 mb-1">Joined</h4>
-                                <p className="text-white">{teamMember.joined || "2023"}</p>
+                                <p className="text-white">{teamMember.joined || "2025"}</p>
                             </div>
                         </div>
                     </div>
