@@ -60,7 +60,7 @@ const sampleMember: Member = {
     projects: 12,
     experience: 3,
     address: "Addis Ababa, Ethiopia",
-    joined: "2022",
+    joined: "2025",
     email: "john@ethiodigitals.com",
     phone: "+251 912 345 678",
     role: "Full-Stack Developer"
@@ -72,24 +72,6 @@ const defaultSkills: string[] = [
     "HTML/CSS", "Git", "REST APIs", "Problem Solving"
 ];
 
-// Default projects to show when none are provided
-const defaultProjects: Project[] = [
-    {
-        title: "E-Commerce Platform",
-        description: "A full-stack e-commerce solution with React and Node.js",
-        technologies: ["React", "Node.js", "MongoDB"]
-    },
-    {
-        title: "Task Management App",
-        description: "A collaborative task management application",
-        technologies: ["TypeScript", "Next.js", "Firebase"]
-    },
-    {
-        title: "Portfolio Website",
-        description: "A responsive portfolio website with animations",
-        technologies: ["React", "Tailwind CSS", "Framer Motion"]
-    }
-];
 
 export default function TeamMemberClient({ member }: { member: TeamMember }) {
     const [activeTab, setActiveTab] = useState<"about" | "skills" | "projects">("about");
@@ -110,8 +92,6 @@ export default function TeamMemberClient({ member }: { member: TeamMember }) {
         : defaultSkills;
 
     // Determine projects count and data
-    const projectsToShow: Project[] = teamMember.projects && teamMember.projects > 0 ? [] : defaultProjects;
-
     const email: string = teamMember.email || `${teamMember.slug}@ethiodigitals.com`;
 
     return (
@@ -209,12 +189,6 @@ export default function TeamMemberClient({ member }: { member: TeamMember }) {
                         >
                             Skills
                         </button>
-                        <button
-                            onClick={() => setActiveTab("projects")}
-                            className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === "projects" ? "border-purple-500 text-purple-400" : "border-transparent text-gray-400 hover:text-gray-300"}`}
-                        >
-                            Projects
-                        </button>
                     </nav>
                 </div>
 
@@ -250,74 +224,6 @@ export default function TeamMemberClient({ member }: { member: TeamMember }) {
                                         </span>
                                     ))}
                                 </div>
-                            </div>
-                        )}
-
-                        {activeTab === "projects" && (
-                            <div className="bg-gray-900/50 rounded-2xl p-6">
-                                <h2 className="text-xl font-bold mb-6">Recent Projects</h2>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                                    {projectsToShow.length > 0 ? (
-                                        // Show default projects if no projects data
-                                        projectsToShow.map((project, index) => (
-                                            <div key={index} className="bg-gray-800/50 rounded-xl p-4">
-                                                <h3 className="font-medium mb-2 text-white">{project.title}</h3>
-                                                <p className="text-sm text-gray-400 mb-3">
-                                                    {project.description}
-                                                </p>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {project.technologies.map((tech, techIndex) => (
-                                                        <span
-                                                            key={techIndex}
-                                                            className="px-2 py-1 bg-blue-900/30 text-blue-300 rounded text-xs"
-                                                        >
-                                                            {tech}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        // Show actual projects if available
-                                        <>
-                                            <div className="bg-gray-800/50 rounded-xl p-4">
-                                                <h3 className="font-medium mb-2 text-white">E-Commerce Platform</h3>
-                                                <p className="text-sm text-gray-400 mb-3">
-                                                    A full-stack e-commerce solution with React and Node.js
-                                                </p>
-                                                <div className="flex flex-wrap gap-2">
-                                                    <span className="px-2 py-1 bg-blue-900/30 text-blue-300 rounded text-xs">React</span>
-                                                    <span className="px-2 py-1 bg-green-900/30 text-green-300 rounded text-xs">Node.js</span>
-                                                </div>
-                                            </div>
-                                            <div className="bg-gray-800/50 rounded-xl p-4">
-                                                <h3 className="font-medium mb-2 text-white">Task Management App</h3>
-                                                <p className="text-sm text-gray-400 mb-3">
-                                                    A collaborative task management application
-                                                </p>
-                                                <div className="flex flex-wrap gap-2">
-                                                    <span className="px-2 py-1 bg-purple-900/30 text-purple-300 rounded text-xs">TypeScript</span>
-                                                    <span className="px-2 py-1 bg-yellow-900/30 text-yellow-300 rounded text-xs">MongoDB</span>
-                                                </div>
-                                            </div>
-                                        </>
-                                    )}
-                                </div>
-
-                                {projectsToShow.length === 0 && (
-                                    <div className="mt-6 text-center">
-                                        <Link
-                                            href={safeSocials.github}
-                                            className="inline-flex items-center text-purple-400 hover:text-purple-300"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            View all projects on GitHub{" "}
-                                            <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
-                                        </Link>
-                                    </div>
-                                )}
                             </div>
                         )}
                     </div>
