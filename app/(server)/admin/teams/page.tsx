@@ -74,10 +74,15 @@ export default function TeamForm() {
             setPreviewUrl(null);
 
             setTimeout(() => setSuccess(false), 3000);
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else if (typeof err === "string") {
+                setError(err);
+            } else {
+                setError("An unexpected error occurred");
+            }
         }
-
         setLoading(false);
     };
 
@@ -97,7 +102,7 @@ export default function TeamForm() {
                                     </svg>
                                     Basic Information
                                 </h3>
-                                <p className="text-gray-400 text-sm mt-1">Enter the team member's basic details</p>
+                                <p className="text-gray-400 text-sm mt-1">Enter the team members basic details</p>
                             </div>
 
                             <div className="space-y-5">

@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import {
     LayoutDashboard,
     Users,
@@ -39,20 +38,7 @@ export default function Sidebar({
     isMobileOpen,
     setIsMobileOpen,
 }: SidebarProps) {
-    const [isMobile, setIsMobile] = useState(false);
 
-    useEffect(() => {
-        const checkIsMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        checkIsMobile();
-        window.addEventListener("resize", checkIsMobile);
-
-        return () => {
-            window.removeEventListener("resize", checkIsMobile);
-        };
-    }, []);
 
     return (
         <>

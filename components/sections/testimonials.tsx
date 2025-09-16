@@ -110,7 +110,7 @@ export const Testimonials: React.FC = () => {
 
                                         {/* Comment */}
                                         <p className="text-gray-200 leading-relaxed flex-grow text-lg italic">
-                                            "{testimonial.comment}"
+                                            {testimonial.comment}
                                         </p>
 
                                         {/* Avatar & Name */}

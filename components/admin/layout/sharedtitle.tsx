@@ -31,7 +31,7 @@ const SharedTitle: React.FC<SharedTitleProps> = ({ title }) => {
     .filter((s) => s !== "admin")
 
   return (
-    <div className="flex flex-col md:flex-row-reverse gap-4 mb-8 md:justify-between md:items-center">
+    <div className="flex flex-col py-6 md:flex-row-reverse gap-4 mb-8 md:justify-between md:items-center">
 
       <Breadcrumb>
         <BreadcrumbList className="text-sm font-medium text-muted-foreground">
