@@ -1,18 +1,21 @@
+// app/(pages)/teams/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import TeamMemberClient from "./TeamMemberClient";
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+function getSupabase() {
+    return createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ""
+    );
+}
 
 export async function generateStaticParams() {
-    const { data: team } = await supabase
-        .from("teams")
-        .select("name");
+    const supabase = getSupabase();
 
-    if (!team) return [];
+    const { data: team, error } = await supabase.from("teams").select("name");
+
+    if (error || !team) return [];
 
     return team.map((member) => ({
         slug: member.name.toLowerCase().replace(/\s+/g, "-"),
@@ -20,7 +23,8 @@ export async function generateStaticParams() {
 }
 
 export default async function TeamMemberPage({ params }: { params: { slug: string } }) {
-    
+    const supabase = getSupabase();
+
     const { data: team, error } = await supabase
         .from("teams")
         .select("id, name, profession, profile_url, details, email, phone");
