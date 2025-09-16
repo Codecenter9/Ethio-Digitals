@@ -2,12 +2,22 @@
 import { SharedHero } from "@/components/layout/breadcrumb";
 import Image from "next/image";
 import { Github, Linkedin, Twitter } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CTA from "@/components/cards/CTA";
-import { team } from "@/data/team";
 import Link from "next/link";
+import { getTeam, TeamMember } from "@/data/team";
 
 const Teams = () => {
+    const [team, setTeam] = useState<TeamMember[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getTeam();
+            console.log("Fetched team:", data);
+            setTeam(data);
+        })();
+    }, []);
+
     return (
         <section className="bg-gray-950 min-h-screen">
             <SharedHero
@@ -31,7 +41,7 @@ const Teams = () => {
                                     width={400}
                                     height={400}
                                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                                    priority={idx < 3} // prioritize first 3 images
+                                    priority={idx < 3}
                                 />
 
                                 {/* Gradient Overlay */}

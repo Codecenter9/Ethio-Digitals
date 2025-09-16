@@ -14,59 +14,57 @@ interface Project {
     category: string;
     image: string;
     link: string;
-    description: string;
 }
 
 const projects: Project[] = [
+    // 🌐 Software & Technical
     {
         id: 1,
-        title: "E-commerce Web Platform",
+        title: "Pharmacy Sales & Inventory System",
         category: "Web",
-        image: "/images/about.webp",
+        image: "/images/projects/pharmacy.webp",
         link: "/projects/1",
-        description: "A fully responsive e-commerce platform with modern UI and seamless checkout experience.",
     },
     {
         id: 2,
-        title: "Mobile Banking App",
-        category: "MobileApp",
-        image: "/images/team.webp",
+        title: "Charity Donation Platform",
+        category: "Web",
+        image: "/images/projects/donation.webp",
         link: "/projects/2",
-        description: "Secure mobile banking application with biometric authentication and transaction tracking.",
     },
+
+    // 🎨 Creative & Marketing
     {
         id: 3,
-        title: "Creative UI/UX Design",
-        category: "UIUX",
-        image: "/images/OIP.webp",
-        link: "/projects/3",
-        description: "User-centered design system with intuitive navigation and engaging visual elements.",
+        title: "Brand Identity Design",
+        category: "Graphics",
+        image: "/images/projects/branding.webp",
+        link: "/projects/6",
     },
     {
         id: 4,
-        title: "Branding & Graphics",
-        category: "Graphics",
-        image: "/images/team.webp",
-        link: "/projects/4",
-        description: "Comprehensive branding package including logo, style guide, and marketing materials.",
+        title: "Digital Marketing Campaign",
+        category: "Marketing",
+        image: "/images/projects/marketing.webp",
+        link: "/projects/7",
     },
     {
         id: 5,
-        title: "Portfolio Website",
-        category: "Web",
-        image: "/images/about.webp",
-        link: "/projects/5",
-        description: "Elegant portfolio website showcasing creative work with smooth animations.",
+        title: "Content Creation Hub",
+        category: "Content",
+        image: "/images/projects/content.webp",
+        link: "/projects/8",
     },
     {
         id: 6,
-        title: "Travel Mobile App",
-        category: "MobileApp",
-        image: "/images/team.webp",
-        link: "/projects/6",
-        description: "Travel companion app with itinerary planning and destination recommendations.",
+        title: "Social Media Management",
+        category: "SocialMedia",
+        image: "/images/projects/social.webp",
+        link: "/projects/9",
     },
+
 ];
+
 
 const ProjectCards: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<string>("All");
@@ -144,8 +142,7 @@ const ProjectCards: React.FC = () => {
                                     <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-300">
                                         {project.title}
                                     </h3>
-                                    <p className="text-gray-400 text-sm mb-4 line-clamp-2">{project.description}</p>
-                                    <div className="flex justify-between items-center">
+                                     <div className="flex justify-between items-center">
                                         <Link
                                             href={project.link}
                                             className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors group-hover:underline"

@@ -59,10 +59,9 @@ const MissionAndVision = () => {
                     <div
                         data-aos="fade-right"
                         data-aos-delay={50}
-                        className="bg-gradient-to-br from-blue-900/20 to-gray-950 rounded-2xl p-8 relative overflow-hidden group hover:shadow-2xl transition-all duration-500"
+                        className="bg-gradient-to-br from-blue-900/10 to-gray-950 rounded-2xl p-8 relative overflow-hidden group hover:shadow-2xl transition-all duration-500"
                     >
-                        <div className="absolute -top-10 -right-10 w-28 h-28 bg-pink-500/20 rounded-full blur-xl group-hover:bg-pink-500/30 transition-all duration-700"></div>
-                        <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-purple-500/20 rounded-full blur-xl group-hover:bg-purple-500/30 transition-all duration-700"></div>
+                        <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-blue-500/20 rounded-full blur-xl group-hover:bg-purple-500/30 transition-all duration-700"></div>
 
                         <div className="flex items-center gap-3 mb-8 relative z-10">
                             <div className="p-3 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl shadow-lg">
@@ -113,11 +112,10 @@ const MissionAndVision = () => {
                     <div
                         data-aos="fade-left"
                         data-aos-delay={50}
-                        className="bg-gradient-to-bl from-blue-900/20  to-gray-950 rounded-2xl p-8 relative overflow-hidden group hover:shadow-2xl transition-all duration-500"
+                        className="bg-gradient-to-bl from-blue-900/10  to-gray-950 rounded-2xl p-8 relative overflow-hidden group hover:shadow-2xl transition-all duration-500"
                     >
-                        <div className="absolute -top-10 -right-10 w-28 h-28 bg-blue-500/20 rounded-full blur-xl group-hover:bg-blue-500/30 transition-all duration-700"></div>
-                        <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-pink-500/20 rounded-full blur-xl group-hover:bg-pink-500/30 transition-all duration-700"></div>
-
+                        <div className="absolute -bottom-10 -right-10 w-28 h-28 bg-blue-500/20 rounded-full blur-xl group-hover:bg-blue-500/30 transition-all duration-700"></div>
+                      
                         <div className="flex items-center gap-3 mb-8 relative z-10">
                             <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl shadow-lg">
                                 <Eye className="w-8 h-8 text-white" />

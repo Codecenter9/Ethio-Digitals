@@ -20,10 +20,10 @@ import { Button } from "../ui/button";
 
 const links = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-    { href: "/admin/users", label: "Users", icon: Users },
-    { href: "/admin/projects", label: "Projects", icon: Folder },
-    { href: "/admin/blogs", label: "Blogs", icon: FileText },
-    { href: "/admin/services", label: "Services", icon: Server },
+    { href: "/admin/teams", label: "Teams", icon: Users },
+    { href: "/admin", label: "Projects", icon: Folder },
+    { href: "/admin", label: "Blogs", icon: FileText },
+    { href: "/admin", label: "Services", icon: Server },
     { href: "/admin/reports", label: "Reports", icon: BarChart3 },
     { href: "/admin/settings", label: "Settings", icon: Settings },
     { href: "/admin/support", label: "Support", icon: HelpCircle },
