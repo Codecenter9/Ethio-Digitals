@@ -205,7 +205,7 @@ const Services: React.FC = () => {
                 Software & Technical
               </h2>
             </div>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {softwareServices.map((service) => (
                 <div
                   key={service.title}
@@ -245,7 +245,7 @@ const Services: React.FC = () => {
                 Creative & Marketing
               </h2>
             </div>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {creativeServices.map((service) => (
                 <div
                   key={service.title}
@@ -286,7 +286,7 @@ const Services: React.FC = () => {
               Other Services
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {otherServices.map((service) => (
               <div
                 key={service.title}
