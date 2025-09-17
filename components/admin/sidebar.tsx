@@ -17,12 +17,12 @@ import { Button } from "../ui/button";
 const links = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
     { href: "/admin/teams", label: "Teams", icon: Users },
-    { href: "/admin", label: "Projects", icon: Folder },
+    { href: "/admin/projects", label: "Projects", icon: Folder },
     { href: "/admin", label: "Blogs", icon: FileText },
     { href: "/admin", label: "Services", icon: Server },
-    { href: "/admin/reports", label: "Reports", icon: BarChart3 },
-    { href: "/admin/settings", label: "Settings", icon: Settings },
-    { href: "/admin/support", label: "Support", icon: HelpCircle },
+    { href: "/admin", label: "Reports", icon: BarChart3 },
+    { href: "/admin", label: "Settings", icon: Settings },
+    { href: "/admin", label: "Support", icon: HelpCircle },
 ];
 
 interface SidebarProps {
@@ -89,7 +89,7 @@ export default function Sidebar({
                         {links.map((link) => {
                             const Icon = link.icon;
                             return (
-                                <li key={link.href}>
+                                <li key={link.label}>
                                     <Link
                                         href={link.href}
                                         className="relative flex items-center p-3 rounded-xl hover:bg-indigo-600/30 transition-all duration-200 group border border-transparent hover:border-indigo-500/30"

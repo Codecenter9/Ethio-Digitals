@@ -1,78 +1,29 @@
-export interface Project {
-    id: number;
-    title: string;
-    area: 'Website Development' | 'Mobile App Development' | 'Graphics Design';
-    image: string;
+import { supabase } from "@/lib/supabaseClient";
+import { Project } from "@/types/projects";
+
+const defaultProject = {
+  name: "Pharmacy Management System",
+  url: "#",
+  category:"Web",
+  image: "/images/team.webp",
+};
+
+export async function getProject(): Promise<Project[]> {
+  const { data, error } = await supabase
+    .from("projects")
+    .select("id, name, url,category, image_url");
+
+  if (error) {
+    console.error("Error fetching team:", error.message);
+    return [];
+  }
+
+  return (data || []).map((member) => ({
+    ...defaultProject,
+    id: member.id,
+    name: member.name,
+    category:member.category || defaultProject.category,
+    image: member.image_url || defaultProject.image,
+    slug: member.url,
+  }));
 }
-
-// Website Development Projects
-export const websiteProjects: Project[] = [
-    {
-        id: 1,
-        title: 'Inventory Management System',
-        area: 'Website Development',
-        image: '/images/software/inventory-management.jpg',
-    },
-    {
-        id: 2,
-        title: 'E-commerce Platform',
-        area: 'Website Development',
-        image: '/images/software/ecommerce-platform.jpg',
-    },
-    {
-        id: 3,
-        title: 'Online Learning Portal',
-        area: 'Website Development',
-        image: '/images/software/learning-portal.jpg',
-    },
-];
-
-// Mobile App Development Projects
-export const mobileProjects: Project[] = [
-    {
-        id: 1,
-        title: 'Task Tracker App',
-        area: 'Mobile App Development',
-        image: '/images/software/task-tracker.jpg',
-    },
-    {
-        id: 2,
-        title: 'Chat Application',
-        area: 'Mobile App Development',
-        image: '/images/software/chat-app.jpg',
-    },
-];
-
-// Graphics Design Projects
-export const graphicsProjects: Project[] = [
-    {
-        id: 1,
-        title: 'Brand Logo Design',
-        area: 'Graphics Design',
-        image: '/images/graphics/logo-design.jpg',
-    },
-    {
-        id: 2,
-        title: 'Event Poster',
-        area: 'Graphics Design',
-        image: '/images/graphics/event-poster.jpg',
-    },
-    {
-        id: 3,
-        title: 'Business Card Design',
-        area: 'Graphics Design',
-        image: '/images/graphics/business-card.jpg',
-    },
-    {
-        id: 4,
-        title: 'Website UI Mockup',
-        area: 'Graphics Design',
-        image: '/images/graphics/ui-mockup.jpg',
-    },
-    {
-        id: 5,
-        title: 'Product Packaging',
-        area: 'Graphics Design',
-        image: '/images/graphics/packaging.jpg',
-    },
-];

@@ -1,72 +1,27 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, Filter, ExternalLink, Eye } from "lucide-react";
 import { Dropdown } from "../layout/dropdown";
 import { Button } from "../ui/button";
-
-// ✅ TypeScript interface for projects
-interface Project {
-    id: number;
-    title: string;
-    category: string;
-    image: string;
-    link: string;
-}
-
-const projects: Project[] = [
-    // 🌐 Software & Technical
-    {
-        id: 1,
-        title: "Pharmacy Sales & Inventory System",
-        category: "Web",
-        image: "/images/projects/pharmacy.webp",
-        link: "/projects/1",
-    },
-    {
-        id: 2,
-        title: "Charity Donation Platform",
-        category: "Web",
-        image: "/images/projects/donation.webp",
-        link: "/projects/2",
-    },
-
-    // 🎨 Creative & Marketing
-    {
-        id: 3,
-        title: "Brand Identity Design",
-        category: "Graphics",
-        image: "/images/projects/branding.webp",
-        link: "/projects/6",
-    },
-    {
-        id: 4,
-        title: "Digital Marketing Campaign",
-        category: "Marketing",
-        image: "/images/projects/marketing.webp",
-        link: "/projects/7",
-    },
-    {
-        id: 5,
-        title: "Content Creation Hub",
-        category: "Content",
-        image: "/images/projects/content.webp",
-        link: "/projects/8",
-    },
-    {
-        id: 6,
-        title: "Social Media Management",
-        category: "SocialMedia",
-        image: "/images/projects/social.webp",
-        link: "/projects/9",
-    },
-
-];
+import { Project } from "@/types/projects";
+import { getProject } from "@/data/projects";
 
 
 const ProjectCards: React.FC = () => {
+
+    const [projects, setProject] = useState<Project[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getProject();
+            console.log("Fetched Category:", data);
+            setProject(data);
+        })();
+    }, []);
+
     const [activeCategory, setActiveCategory] = useState<string>("All");
     const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -74,7 +29,7 @@ const ProjectCards: React.FC = () => {
 
     const filteredProjects = projects.filter((p) => {
         const matchesCategory = activeCategory === "All" || p.category === activeCategory;
-        const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesCategory && matchesSearch;
     });
 
@@ -116,7 +71,7 @@ const ProjectCards: React.FC = () => {
                                 <div className="relative h-60 overflow-hidden">
                                     <Image
                                         src={project.image}
-                                        alt={project.title}
+                                        alt={project.name}
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
@@ -130,7 +85,7 @@ const ProjectCards: React.FC = () => {
                                                 <Eye className="w-5 h-5" />
                                             </Button>
                                             <Link
-                                                href={project.link}
+                                                href={project.url}
                                                 className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors shadow-lg"
                                             >
                                                 <ExternalLink className="w-5 h-5" />
@@ -140,11 +95,11 @@ const ProjectCards: React.FC = () => {
                                 </div>
                                 <div className="p-5">
                                     <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-300">
-                                        {project.title}
+                                        {project.name}
                                     </h3>
-                                     <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center">
                                         <Link
-                                            href={project.link}
+                                            href={project.url}
                                             className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors group-hover:underline"
                                         >
                                             View Project

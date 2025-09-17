@@ -1,4 +1,3 @@
-"use client"
 import SharedTitle from '@/components/admin/layout/sharedtitle'
 import { Button } from '@/components/ui/button';
 import { supabase } from "@/lib/supabaseClient";
@@ -9,7 +8,6 @@ import React, { useState } from 'react'
 const AddServices = () => {
     const [name, setName] = useState("");
     const [url, setURL] = useState("");
-    const [category, setCategory] = useState("");
     const [image, setImage] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
@@ -57,7 +55,7 @@ const AddServices = () => {
             }
 
             const { error: insertError } = await supabase.from("projects").insert([
-                { name, url, category, image_url: imageUrl },
+                { name, url, image_url: imageUrl },
             ]);
 
             if (insertError) throw insertError;
@@ -65,7 +63,6 @@ const AddServices = () => {
             setSuccess(true);
             setName("");
             setURL("");
-            setCategory("");
             setImage(null);
             setPreviewUrl(null);
 
@@ -83,9 +80,9 @@ const AddServices = () => {
     };
 
     return (
-        <div className="min-h-max flex items-center justify-center">
+        <div className="min-h-screen flex items-center justify-center">
             <div className="w-full max-w-6xl space-y-8">
-                <SharedTitle title="Add Projects" />
+                <SharedTitle title="Add Services" />
                 <form onSubmit={handleSubmit} className="space-y-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-xl p-6 border border-gray-700">
@@ -108,33 +105,19 @@ const AddServices = () => {
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        Project URL
+                                        Project URL **
                                     </label>
                                     <input
-                                        type="text"
+                                        type="url"
                                         placeholder="Enter project url"
                                         value={url}
                                         onChange={(e) => setURL(e.target.value)}
                                         className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
                                                         focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
-
+                                        required
                                     />
                                 </div>
 
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        Project Category
-                                    </label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter project category"
-                                        value={category}
-                                        onChange={(e) => setCategory(e.target.value)}
-                                        className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
-                                                        focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
-
-                                    />
-                                </div>
                             </div>
                         </div>
 
