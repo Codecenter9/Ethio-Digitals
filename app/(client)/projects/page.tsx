@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { SharedHero } from "@/components/layout/breadcrumb";
 import ProjectCards from "@/components/cards/projectcards";
 
-// ✅ Metadata for SEO
 export const metadata: Metadata = {
   title: "Projects ",
   description:
