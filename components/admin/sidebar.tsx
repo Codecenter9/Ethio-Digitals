@@ -11,6 +11,7 @@ import {
     HelpCircle,
     ChevronFirst,
     ChevronLast,
+    User,
 } from "lucide-react";
 import { Button } from "../ui/button";
 
@@ -23,6 +24,7 @@ const links = [
     { href: "/admin", label: "Reports", icon: BarChart3 },
     { href: "/admin", label: "Settings", icon: Settings },
     { href: "/admin", label: "Support", icon: HelpCircle },
+    { href: "/admin/users", label: "Admins", icon: User },
 ];
 
 interface SidebarProps {
