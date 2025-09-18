@@ -17,6 +17,7 @@ import { Button } from "../ui/button";
 
 const links = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+    { href: "/admin/users", label: "Admins", icon: User },
     { href: "/admin/teams", label: "Teams", icon: Users },
     { href: "/admin/projects", label: "Projects", icon: Folder },
     { href: "/admin", label: "Blogs", icon: FileText },
@@ -24,7 +25,6 @@ const links = [
     { href: "/admin", label: "Reports", icon: BarChart3 },
     { href: "/admin", label: "Settings", icon: Settings },
     { href: "/admin", label: "Support", icon: HelpCircle },
-    { href: "/admin/users", label: "Admins", icon: User },
 ];
 
 interface SidebarProps {

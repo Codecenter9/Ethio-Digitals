@@ -100,7 +100,6 @@ const Users = () => {
                 console.error("Profile insert error:", profileError);
                 throw profileError;
             }
-
             setSuccess(true);
             setFName("");
             setLName("");
@@ -145,33 +144,35 @@ const Users = () => {
                             </div>
 
                             <div className="space-y-5">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        First Name *
-                                    </label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter first name"
-                                        value={f_name}
-                                        onChange={(e) => setFName(e.target.value)}
-                                        className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
+                                <div className="flex flex-row gap-3">
+                                    <div className="">
+                                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                                            First Name *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            placeholder="Enter first name"
+                                            value={f_name}
+                                            onChange={(e) => setFName(e.target.value)}
+                                            className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
                                         focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        Last Name *
-                                    </label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter last name"
-                                        value={l_name}
-                                        onChange={(e) => setLName(e.target.value)}
-                                        className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
+                                            required
+                                        />
+                                    </div>
+                                    <div className="">
+                                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                                            Last Name *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            placeholder="Enter last name"
+                                            value={l_name}
+                                            onChange={(e) => setLName(e.target.value)}
+                                            className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
                                         focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-500"
-                                        required
-                                    />
+                                            required
+                                        />
+                                    </div>
                                 </div>
                                 <div className="relative">
                                     <label className="block text-sm font-medium text-gray-300 mb-2">

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Search, Bell, MessageSquare, Menu, ChevronDown, LogOut, User, Settings } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 interface TopbarProps {
   onMenuClick: () => void;
@@ -12,14 +12,41 @@ interface TopbarProps {
   onToggleSidebar: () => void;
 }
 
-export default function Topbar({
-  onMenuClick,
-}: TopbarProps) {
+export default function Topbar({ onMenuClick }: TopbarProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  // Close dropdown when clicking outside
+  const [userEmail, setUserEmail] = useState<string | undefined>(undefined);
+  const [firstName, setFirstName] = useState<string>("");
+  const [photo, setPhoto] = useState<string>("");
+
+  useEffect(() => {
+    const getUserDetails = async () => {
+      const { data: { user }, error } = await supabase.auth.getUser();
+      if (error || !user) {
+        console.error("No logged in user:", error);
+        return;
+      }
+      setUserEmail(user.email);
+
+      const { data: profile, error: profileError } = await supabase
+        .from("user_profiles")
+        .select("f_name,photo")
+        .eq("id", user.id)
+        .single();
+
+      if (profileError) {
+        console.error("Error fetching profile:", profileError);
+      } else if (profile) {
+        setFirstName(profile.f_name);
+        setPhoto(profile.photo);
+      }
+    };
+
+    getUserDetails();
+  }, []);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -28,9 +55,7 @@ export default function Topbar({
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleLogout = async () => {
@@ -79,7 +104,9 @@ export default function Topbar({
 
         <div className="flex items-center gap-2 pl-2 border-l border-gray-700">
           <div className="text-right hidden sm:block">
-            <p className="text-sm font-medium text-white">Admin User</p>
+            <p className="text-sm font-medium text-white">
+              {firstName || "User"}
+            </p>
             <p className="text-xs text-gray-400">Administrator</p>
           </div>
           <div className="relative group" ref={dropdownRef}>
@@ -88,15 +115,15 @@ export default function Topbar({
               className="flex items-center gap-1 focus:outline-none"
             >
               <Image
-                src="/images/OIP.webp"
-                alt="profile"
-                className="rounded-full border-2 border-transparent group-hover:border-indigo-500 transition-colors"
+                src={photo || "/images/team.webp"}
+                alt={firstName}
+                className="rounded-2xl border-2 border-transparent group-hover:border-indigo-500 transition-colors"
                 width={40}
                 height={40}
               />
               <ChevronDown
                 size={16}
-                className={`text-gray-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+                className={`text-gray-400 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
               />
             </Button>
 
@@ -105,7 +132,9 @@ export default function Topbar({
               <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-700">
                 <div className="px-4 py-2 border-b border-gray-700">
                   <p className="text-sm text-white">Signed in as</p>
-                  <p className="text-sm font-medium text-gray-300">admin@example.com</p>
+                  <p className="text-sm font-medium text-gray-300">
+                    {userEmail || "No email"}
+                  </p>
                 </div>
 
                 <a
