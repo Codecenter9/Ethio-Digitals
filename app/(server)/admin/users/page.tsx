@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 const Users = () => {
     const [f_name, setFName] = useState("");
-        const [l_name, setLName] = useState("");
+    const [l_name, setLName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [image, setImage] = useState<File | null>(null);
@@ -32,30 +32,99 @@ const Users = () => {
     const handleSignup = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        setError(null);
+        setSuccess(false);
 
-        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-            email,
-            password,
-        });
+        try {
+            // 1. Sign up user
+            const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+                email,
+                password,
+            });
 
-        if (signUpError) {
-            alert(signUpError.message);
-            setLoading(false);
-            return;
+            if (signUpError) {
+                setError(signUpError.message);
+                setLoading(false);
+                return;
+            }
+
+            const user = signUpData.user;
+            if (!user) {
+                setError("Signup failed. Please try again.");
+                setLoading(false);
+                return;
+            }
+
+            let imageUrl: string | null = null;
+
+            if (image) {
+                const fileExt = image.name.split(".").pop();
+                const fileName = `${user.id}.${fileExt}`;
+                const filePath = fileName;
+
+                const { error: uploadError } = await supabase.storage
+                    .from("user_profiles")
+                    .upload(filePath, image, { upsert: true });
+
+                if (uploadError) {
+                    console.error("Image upload failed:", uploadError);
+                    setError(uploadError.message);
+                    setLoading(false);
+                    return;
+                }
+
+                const { data: publicUrlData } = supabase.storage
+                    .from("user_profiles")
+                    .getPublicUrl(filePath);
+
+                imageUrl = publicUrlData.publicUrl;
+            }
+
+            console.log("Saving profile:", {
+                id: user.id,
+                f_name,
+                l_name,
+                photo: imageUrl,
+            });
+
+            const { error: profileError } = await supabase
+                .from("user_profiles")
+                .upsert({
+                    id: user.id,
+                    f_name,
+                    l_name,
+                    photo: imageUrl,
+                });
+
+            if (profileError) {
+                console.error("Profile insert error:", profileError);
+                throw profileError;
+            }
+
+            setSuccess(true);
+            setFName("");
+            setLName("");
+            setEmail("");
+            setPassword("");
+            setImage(null);
+            setPreviewUrl(null);
+
+            setTimeout(() => setSuccess(false), 3000);
+        } catch (err: unknown) {
+            console.error("Raw error object:", err);
+            if (err instanceof Error) {
+                setError(err.message);
+            } else if (typeof err === "string") {
+                setError(err);
+            } else {
+                setError("An unexpected error occurred");
+            }
         }
 
-        const user = signUpData.user;
-        if (!user) {
-            alert("Signup failed. Please try again.");
-            setLoading(false);
-            return;
-        }
-        else {
-            alert("Signup successful! Please check your email to confirm.");
-
-        }
         setLoading(false);
     };
+
+
 
     return (
         <div className="min-h-screen flex items-center justify-center">
